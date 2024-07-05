@@ -1,20 +1,27 @@
-# Start from a minimal Go image
-FROM docker.io/library/golang
+# syntax=docker/dockerfile:1
 
-# Set the working directory inside the container
-WORKDIR /go/src/app
+FROM golang:1.19
 
+# Set destination for COPY
+WORKDIR /app
 
-# Copy the entire project to the working directory
-COPY . .
+# Download Go modules
+COPY go.mod go.sum ./
+RUN go mod download
 
+# Copy the source code. Note the slash at the end, as explained in
+# https://docs.docker.com/reference/dockerfile/#copy
+COPY *.go ./
 
+# Build
+RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
 
+# Optional:
+# To bind to a TCP port, runtime parameters must be supplied to the docker command.
+# But we can document in the Dockerfile what ports
+# the application is going to listen on by default.
+# https://docs.docker.com/reference/dockerfile/#expose
+EXPOSE 8080
 
-# Build the Go application
-RUN go build -o main main.go
-
-# Expose the port that the application will run on
-EXPOSE 5000
-# Start the application
-CMD ["./main"]
+# Run
+CMD ["/docker-gs-ping"]
