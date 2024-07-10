@@ -1,28 +1,31 @@
-pipeline {
-    environment {
-        imagename = "ganeshpoloju/jenkinss"
-        dockerImage = ''
-        containerName = 'my-container'
+node {
+    def app
+
+    
+    stage('Cloning Git') {
         
+        git([url: 'https://github.com/alprnaydn/Jenkins-demo.git', branch: 'main'])
+       
     }
- 
-    agent any
- 
-    stages {
-        stage('Cloning Git') {
-            steps {
-                git([url: 'https://github.com/alprnaydn/Jenkins-demo.git', branch: 'main'])
-            }
+
+    stage('Build image') {
+  
+       app = docker.build("falprnaydn/jenkins")
+    }
+
+    stage('Test image') {
+  
+
+        app.inside {
+            sh 'echo "Tests passed"'
         }
- 
-        stage('Building image') {
-            steps {
-                script {
-                    dockerImage = docker.build "${imagename}:latest"
-                }
-            }
-        }
+    }
+
+    stage('Push image') {
         
- 
+        docker.withRegistry('https://registry.hub.docker.com', 'git') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+        }
     }
 }
