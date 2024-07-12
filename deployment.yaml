@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: jenkins-demo
-        image: http://192.168.4.219/demo/init:latest
+        image: 192.168.4.219/demo/init:latest
         ports:
         - containerPort: 80
