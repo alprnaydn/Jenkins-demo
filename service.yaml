@@ -4,7 +4,7 @@ metadata:
   name: service 
 spec:
   selector:
-    app: jenkins-demo
+    app: jenkins
   type: LoadBalancer 
   ports:
   - protocol: TCP
