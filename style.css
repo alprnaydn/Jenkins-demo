@@ -1,0 +1,75 @@
+body{
+    background-image: url(pngtree-weather-icons-in-glassmorphism-style-for-forecast-app-vector-png-image_50698132.jpg);
+    background-size: cover;
+}
+
+.container{
+
+    border-style: solid;
+    border-color: grey;
+    position: relative;
+    margin: auto;
+    width: 350px;
+    height: 500px;
+    background-color: rgba(255, 254, 254, 0.5);
+}
+
+.first-degree{
+    position: relative;
+    margin: auto;
+    width: max-content;
+    border-style: solid;
+    border-color: grey;
+    margin-top: 45px;
+}
+
+.output-degree{
+    position: relative;
+    margin: auto;
+    width: 170px;
+    height: 45px;
+    border-style: solid;
+    border-color:grey;
+    margin-top: 45px;
+}
+
+
+#first-degree{
+    height: 45px;
+}
+
+#output-degree{
+    height: 45px;
+}
+
+.convert-button{
+    position: relative;
+    margin: auto;
+    margin-top: 45px;
+    width: max-content;
+    height: 35px;
+}
+
+#convert-button{
+    height: 45px;
+}
+
+.convert-type{
+    position: relative;
+    margin: auto;
+    margin-top: 45px;
+    width: max-content;
+    height: 35px;
+}
+
+
+.text-of-convert-type{
+    border-style: solid;
+    position: relative;
+    margin: auto;
+    margin-top: 45px;
+    width: 125px;
+    height: 35px;
+    text-align: center;
+    border-color: grey;
+}
